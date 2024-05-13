@@ -9,6 +9,8 @@ import {
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
+
+//opts out of static rendering
 import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchRevenue() {
@@ -70,6 +72,7 @@ export async function fetchCardData() {
 
 //Promise.all()/Promise.allSettled() initiates all the promises as the same time. Faster. 
 //If one data request is slower than the others, this could be a disadvantage. 
+// This avoids waterfalls
     const data = await Promise.all([
       invoiceCountPromise,
       customerCountPromise,
